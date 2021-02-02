@@ -87,6 +87,7 @@ $app->singleton(
 
 // Doctrine
 $app->register(LaravelDoctrine\ORM\DoctrineServiceProvider::class);
+$app->register(LaravelDoctrine\Migrations\MigrationsServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
