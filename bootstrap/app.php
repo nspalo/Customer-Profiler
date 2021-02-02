@@ -1,5 +1,9 @@
 <?php
 
+use LaravelDoctrine\ORM\Facades\Doctrine;
+use LaravelDoctrine\ORM\Facades\Registry;
+use LaravelDoctrine\ORM\Facades\EntityManager;
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
@@ -79,6 +83,22 @@ $app->singleton(
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+
+
+// Doctrine
+$app->register(LaravelDoctrine\ORM\DoctrineServiceProvider::class);
+
+/*
+|--------------------------------------------------------------------------
+| Class Aliases
+|--------------------------------------------------------------------------
+|
+| Register the EntityManager, Registry and/or Doctrine Facade Aliases
+|
+*/
+class_alias(EntityManager::class, 'EntityManager');
+class_alias(Registry::class, 'Registry');
+class_alias(Doctrine::class, 'Doctrine');
 
 /*
 |--------------------------------------------------------------------------
