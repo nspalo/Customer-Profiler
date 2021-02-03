@@ -84,11 +84,13 @@ $app->singleton(
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
-
 // Doctrine
 $app->register(LaravelDoctrine\ORM\DoctrineServiceProvider::class);
 $app->register(LaravelDoctrine\Migrations\MigrationsServiceProvider::class);
 $app->register(LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider::class);
+
+// FlexisourceIT
+$app->register(App\Providers\RepositoryServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
