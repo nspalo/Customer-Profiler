@@ -18,17 +18,13 @@ class CustomerRenderer extends Render
     public function render(Customer $customer): array
     {
         return [
-            'id' => $customer->getId(),
+            'fullname' => $customer->getFirstName() . " " . $customer->getLastName(),
             'emailAddress' => $customer->getEmailAddress(),
-            'fullName' => $customer->getFirstName() . " " . $customer->getLastName(),
-            'firstName' => $customer->getFirstName(),
-            'lastName' => $customer->getLastName(),
             'username' => $customer->getUsername(),
             'gender' => $customer->getGender(),
-            'phone' => $customer->getPhone(),
+            'country' => $customer->getCountry(),
             'city' => $customer->getCity(),
-            'country' => $customer->getCountry()
+            'phone' => $customer->getPhone()
         ];
     }
-
 }

@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Services\Customers\CustomerDataCollectorService;
+use App\Services\Customers\CustomerDataImporterService;
 use App\Services\Customers\CustomerDataInterface;
-use App\Services\Customers\CustomerDataCollectionInterface;
-use App\Services\Customers\CustomerDataCollectionService;
 use App\Services\Customers\CustomerDataTransferObject;
+use App\Services\Customers\DataCollectorInterface;
+use App\Services\Customers\DataImporterInterface;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -16,8 +18,12 @@ class FlexisourceItServiceProvider extends ServiceProvider
 {
     protected $components = [
         [
-            'serviceInterface' => CustomerDataCollectionInterface::class,
-            'serviceClass' => CustomerDataCollectionService::class
+            'serviceInterface' => DataCollectorInterface::class,
+            'serviceClass' => CustomerDataCollectorService::class
+        ],
+        [
+            'serviceInterface' => DataImporterInterface::class,
+            'serviceClass' => CustomerDataImporterService::class
         ],
         [
             'serviceInterface' => CustomerDataInterface::class,
@@ -32,8 +38,7 @@ class FlexisourceItServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        foreach ($this->components as $aComponents)
-        {
+        foreach ($this->components as $aComponents) {
             $this->app->bind($aComponents['serviceInterface'], $aComponents['serviceClass']);
         }
     }
