@@ -2,6 +2,7 @@
 
 namespace App\Database\Entities\Customer;
 
+use App\Database\Enums\Gender;
 use Doctrine\ORM\Mapping as ORM;
 use App\Database\Entities\Entity;
 
@@ -55,8 +56,8 @@ class Customer extends Entity
     /**
      * Gender - Male|Female|Other
      *
-     * @ORM\Column(type="string", length=8, unique=false, nullable=false)
-     * @var string
+     * @ORM\Embedded(class = "App\Database\Enums\Gender")
+     * @var Gender $gender
      */
     protected $gender;
 
@@ -222,11 +223,19 @@ class Customer extends Entity
     }
 
     /**
+     * @return Gender
+     */
+    public function getGenderObject(): Gender
+    {
+        return $this->gender;
+    }
+
+    /**
      * @return string
      */
     public function getGender(): string
     {
-        return $this->gender;
+        return $this->getGenderObject()->getSelectedOption();
     }
 
     /**
@@ -234,7 +243,7 @@ class Customer extends Entity
      */
     public function setGender(string $gender): void
     {
-        $this->gender = $gender;
+        $this->gender = Gender::findByValue($gender);
     }
 
     /**
