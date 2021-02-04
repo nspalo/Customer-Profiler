@@ -20,9 +20,9 @@ class CustomerRenderer extends Render
         return [
             'id' => $customer->getId(),
             'emailAddress' => $customer->getEmailAddress(),
-            'fullName' => $customer->getFirstName() . " " . $customer->getLastName(),
-            'firstName' => $customer->getFirstName(),
-            'lastName' => $customer->getLastName(),
+            'fullname' => $customer->getFirstName() . " " . $customer->getLastName(),
+            // 'firstName' => $customer->getFirstName(),
+            // 'lastName' => $customer->getLastName(),
             'username' => $customer->getUsername(),
             'gender' => $customer->getGender(),
             'phone' => $customer->getPhone(),
@@ -30,5 +30,4 @@ class CustomerRenderer extends Render
             'country' => $customer->getCountry()
         ];
     }
-
 }
