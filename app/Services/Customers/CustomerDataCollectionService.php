@@ -38,8 +38,7 @@ class CustomerDataCollectionService extends AbstractCustomerService implements C
 
     public function fetchData()
     {
-//        $filterHeadCount = 100;
-        $filterHeadCount = 2;
+        $filterHeadCount = 100;
         $filterNationality = "au";
         $filterFields   = "email,name,gender,phone,login,location,nat";
         $apiQueryString = "?results={$filterHeadCount}&nat={$filterNationality}&inc={$filterFields}&noinfo";
