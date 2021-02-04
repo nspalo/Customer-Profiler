@@ -49,6 +49,6 @@ class Controller extends BaseController
      */
     protected function successfulResponse(?array $data = null, ?array $headers = null): JsonResponse
     {
-        return $this->toJsonResponse($data ?? [], 400, $headers ?? []);
+        return $this->toJsonResponse($data ?? [], 200, $headers ?? []);
     }
 }

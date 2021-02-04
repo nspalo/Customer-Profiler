@@ -3,6 +3,7 @@
 namespace App\Database\Entities\Customer;
 
 use App\Database\Enums\Gender;
+use App\Traits\PasswordEncryption;
 use Doctrine\ORM\Mapping as ORM;
 use App\Database\Entities\Entity;
 
@@ -13,6 +14,8 @@ use App\Database\Entities\Entity;
  */
 class Customer extends Entity
 {
+    use PasswordEncryption;
+
     /**
      * Email address
      *
@@ -219,7 +222,7 @@ class Customer extends Entity
             throw new \Exception("Password is required.");
         }
 
-        $this->password = md5($password);
+        $this->password = $this->encryptWithMD5($password);
     }
 
     /**
