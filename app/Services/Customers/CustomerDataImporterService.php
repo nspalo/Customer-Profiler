@@ -55,7 +55,6 @@ class CustomerDataImporterService extends AbstractCustomerService implements Dat
 
     }
 
-
     /**
      * CustomerDataCollectionService constructor.
      * @param EntityManager $entityManager
@@ -84,6 +83,4 @@ class CustomerDataImporterService extends AbstractCustomerService implements Dat
 
         $this->entityManager->flush();
     }
-
-
 }
