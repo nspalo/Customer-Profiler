@@ -218,7 +218,7 @@ class Customer extends Entity
             throw new \Exception("Password is required.");
         }
 
-        $this->password = $password;
+        $this->password = md5($password);
     }
 
     /**

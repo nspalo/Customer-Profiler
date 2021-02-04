@@ -11,22 +11,22 @@ use App\Database\Entities\Customer\Customer;
 class CreateCustomerService
 {
     /**
-     * @param CreateCustomerRequestInterface $createCustomerRequest
+     * @param CustomerDataInterface $customerData
      * @return Customer
      * @throws \Exception
      */
-    public function handle(CreateCustomerRequestInterface $createCustomerRequest): Customer
+    public function handle(CustomerDataInterface $customerData): Customer
     {
         return new Customer(
-            $createCustomerRequest->getEmailAddress(),
-            $createCustomerRequest->getFirstName(),
-            $createCustomerRequest->getLastName(),
-            $createCustomerRequest->getUsername(),
-            $createCustomerRequest->getPassword(),
-            $createCustomerRequest->getGender(),
-            $createCustomerRequest->getPhone(),
-            $createCustomerRequest->getCity(),
-            $createCustomerRequest->getCountry()
+            $customerData->getEmailAddress(),
+            $customerData->getFirstName(),
+            $customerData->getLastName(),
+            $customerData->getUsername(),
+            $customerData->getPassword(),
+            $customerData->getGender(),
+            $customerData->getPhone(),
+            $customerData->getCity(),
+            $customerData->getCountry()
         );
     }
 }

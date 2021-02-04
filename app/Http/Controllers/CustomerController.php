@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Database\Renderers\Customer\CustomerRenderer;
 use App\Database\Repositories\Customer\CustomerRepositoryInterface;
 use App\Database\Repositories\Customer\CustomerRepository;
-use Doctrine\ORM\EntityManager;
 use Illuminate\Http\JsonResponse;
 
 /**
@@ -14,11 +13,6 @@ use Illuminate\Http\JsonResponse;
  */
 class CustomerController extends Controller
 {
-    /**
-     * @var EntityManager
-     */
-    // private $entityManager;
-
     /**
      * @var CustomerRepository
      */
@@ -35,12 +29,9 @@ class CustomerController extends Controller
      * @param CustomerRenderer $customerRenderer
      */
     public function __construct(
-        // EntityManager $entityManager,
         CustomerRepositoryInterface $customerRepository,
         CustomerRenderer $customerRenderer
-    )
-    {
-        //$this->entityManager = $entityManager;
+    ) {
         $this->customerRepository = $customerRepository;
         $this->customerRenderer = $customerRenderer;
     }

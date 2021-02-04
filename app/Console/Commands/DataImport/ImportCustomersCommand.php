@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands\DataImport;
 
-use App\Services\Customers\CollectCustomerDataService;
+use App\Services\Customers\CustomerDataCollectionInterface;
+use App\Services\Customers\CustomerDataCollectionService;
 use Illuminate\Console\Command;
 
 /**
@@ -25,19 +26,19 @@ class ImportCustomersCommand extends Command
      */
     protected $description = 'Fetch and store a minimum of 100 users from a 3rd party data provider api.';
     /**
-     * @var CollectCustomerDataService
+     * @var CustomerDataCollectionService
      */
-    private $collectCustomerDataService;
+    private $customerDataCollectionService;
 
     /**
      * Create a new command instance.
      *
-     * @param CollectCustomerDataService $collectCustomerDataService
+     * @param CustomerDataCollectionInterface $collectCustomerDataService
      */
-    public function __construct(CollectCustomerDataService $collectCustomerDataService)
+    public function __construct(CustomerDataCollectionInterface $collectCustomerDataService)
     {
         parent::__construct();
-        $this->collectCustomerDataService = $collectCustomerDataService;
+        $this->customerDataCollectionService = $collectCustomerDataService;
     }
 
     /**
@@ -49,25 +50,9 @@ class ImportCustomersCommand extends Command
     {
         echo "fetching data..." . PHP_EOL;
 
-        $response = $this->fetchCustomerData();
-        $this->collectCustomerDataService->handle($response["results"]);
+        $this->customerDataCollectionService->handle();
 
-        echo "Total number of data fetch: " . count($response["results"]);
+        echo "Data collection completed!";
     }
 
-    /**
-     * @return mixed
-     */
-    private function fetchCustomerData()
-    {
-        $filterHeadCount = 100;
-        $filterNationality = "au";
-        $filterFields   = "email,name,gender,phone,login,location,nat";
-        $apiQueryString = "?results={$filterHeadCount}&nat={$filterNationality}&inc={$filterFields}&noinfo";
-        $apiEndpoint    = "https://randomuser.me/api".$apiQueryString;
-
-        $response = file_get_contents($apiEndpoint);
-
-        return json_decode($response, true);
-    }
 }

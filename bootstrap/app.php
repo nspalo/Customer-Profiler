@@ -91,6 +91,7 @@ $app->register(LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider::class)
 
 // FlexisourceIT
 $app->register(App\Providers\RepositoryServiceProvider::class);
+$app->register(App\Providers\FlexisourceItServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

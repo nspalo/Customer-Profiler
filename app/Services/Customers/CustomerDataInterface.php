@@ -6,7 +6,7 @@ namespace App\Services\Customers;
  * Interface CreateCustomerRequestInterface
  * @package App\Services\Customers
  */
-interface CreateCustomerRequestInterface
+interface CustomerDataInterface
 {
     public function getEmailAddress();
     public function getFirstName();
@@ -17,6 +17,5 @@ interface CreateCustomerRequestInterface
     public function getPhone();
     public function getCity();
     public function getCountry();
-
 }
 
