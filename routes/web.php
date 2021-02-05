@@ -11,16 +11,9 @@
 |
 */
 
-//$router->get('/', function () use ($router) {
-//    return $router->app->version();
-//});
-
-//$router->get('/customers', function () {
-//    return 'Hello World';
-//});
-
-// $router->get('/customers', 'CustomerController@index');
-
+$router->get('/', function () use ($router) {
+    return $router->app->version();
+});
 
 // Customers
 $router->group(['prefix' => '/'], function () use ($router) {
