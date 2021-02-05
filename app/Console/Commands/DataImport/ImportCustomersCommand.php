@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands\DataImport;
 
-use App\Services\Customers\CustomerDataCollectionInterface;
-use App\Services\Customers\CustomerDataCollectionService;
+use App\Services\Customers\DataCollectorInterface;
+use App\Services\Customers\DataImporterInterface;
 use Illuminate\Console\Command;
 
 /**
@@ -25,20 +25,30 @@ class ImportCustomersCommand extends Command
      * @var string
      */
     protected $description = 'Fetch and store a minimum of 100 users from a 3rd party data provider api.';
+
     /**
-     * @var CustomerDataCollectionService
+     * @var DataCollectorInterface
      */
-    private $customerDataCollectionService;
+    private $customerDataCollectorService;
+
+    /**
+     * @var DataImporterInterface
+     */
+    private $customerDataImporterService;
 
     /**
      * Create a new command instance.
-     *
-     * @param CustomerDataCollectionInterface $collectCustomerDataService
+     * @param DataCollectorInterface $customerDataCollectorService
+     * @param DataImporterInterface $customerDataImporterService
      */
-    public function __construct(CustomerDataCollectionInterface $collectCustomerDataService)
+    public function __construct(
+        DataCollectorInterface $customerDataCollectorService,
+        DataImporterInterface $customerDataImporterService
+    )
     {
         parent::__construct();
-        $this->customerDataCollectionService = $collectCustomerDataService;
+        $this->customerDataCollectorService = $customerDataCollectorService;
+        $this->customerDataImporterService = $customerDataImporterService;
     }
 
     /**
@@ -50,9 +60,10 @@ class ImportCustomersCommand extends Command
     {
         echo "fetching data..." . PHP_EOL;
 
-        $this->customerDataCollectionService->handle();
+        $this->customerDataImporterService->import(
+            $this->customerDataCollectorService->fetch()
+        );
 
         echo "Data collection completed!";
     }
-
 }

@@ -43,7 +43,7 @@ class CustomerController extends Controller
      */
     public function index(): JsonResponse
     {
-        if (null === ($customers = $this->customerRepository->findAll())) {
+        if (null === ($customers = $this->customerRepository->findAllForSummaryView())) {
             return $this->errorResponse(
                 ['message' => \sprintf('No Available Customer Data.')],
                 404
@@ -51,7 +51,7 @@ class CustomerController extends Controller
         }
 
         return $this->successfulResponse(
-            $this->customerRenderer->renderList($customers)
+            $customers
         );
     }
 
@@ -74,6 +74,4 @@ class CustomerController extends Controller
             $this->customerRenderer->render($customer)
         );
     }
-
-
 }

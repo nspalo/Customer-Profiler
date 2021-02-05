@@ -9,4 +9,5 @@ namespace App\Database\Repositories\Customer;
 interface CustomerRepositoryInterface
 {
     public function findById($id);
+    public function findAllForSummaryView();
 }

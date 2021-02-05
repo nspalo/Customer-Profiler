@@ -18,4 +18,20 @@ class CustomerRepository extends EntityRepository implements CustomerRepositoryI
     {
         return $this->findOneBy(['id' => $id]);
     }
+
+    /**
+     * Return All Customer, showing only fullname, email, country
+     *
+     * @return int|mixed|string
+     */
+    public function findAllForSummaryView()
+    {
+        $fields = "CONCAT(c.firstName, ' ', c.lastName) AS fullname, c.emailAddress, c.country";
+
+        return
+            $this->createQueryBuilder("c")
+                ->select($fields)
+                ->getQuery()
+                ->getResult();
+    }
 }
