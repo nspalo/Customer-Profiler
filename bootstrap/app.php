@@ -101,9 +101,9 @@ $app->register(App\Providers\FlexisourceItServiceProvider::class);
 | Register the EntityManager, Registry and/or Doctrine Facade Aliases
 |
 */
-class_alias(EntityManager::class, 'EntityManager');
-class_alias(Registry::class, 'Registry');
-class_alias(Doctrine::class, 'Doctrine');
+//class_alias(EntityManager::class, 'EntityManager');
+//class_alias(Registry::class, 'Registry');
+//class_alias(Doctrine::class, 'Doctrine');
 
 /*
 |--------------------------------------------------------------------------
